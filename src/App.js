@@ -17,7 +17,6 @@ function App() {
     seconds: 0
   });
   const [isWorkTime, setIsWorkTime] = useState(false);
-  const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
   const confettiTriggered = useRef(false);
 
   const triggerConfetti = () => {
@@ -52,8 +51,6 @@ function App() {
       // Convert to GMT-5 (Colombia/Peru timezone)
       const gmt5Time = new Date(now.getTime() - (5 * 60 * 60 * 1000));
       const currentHour = gmt5Time.getUTCHours();
-      const currentMinute = gmt5Time.getUTCMinutes();
-      const currentSecond = gmt5Time.getUTCSeconds();
       
       // Check if it's work time (8 AM to 5 PM)
       if (currentHour >= 8 && currentHour < 17) {
@@ -78,7 +75,6 @@ function App() {
           if (!confettiTriggered.current) {
             triggerConfetti();
             confettiTriggered.current = true;
-            setHasTriggeredConfetti(true);
           }
         }
       } else {
